@@ -1,7 +1,20 @@
 import dayjs from 'dayjs';
 import { holidaysOf2020, workdaysOf2020 } from './2020';
+import { holidaysOf2019, workdaysOf2019 } from './2019';
+import { holidaysOf2018, workdaysOf2018 } from './2018';
+import { holidaysOf2017, workdaysOf2017 } from './2017';
+import { holidaysOf2016, workdaysOf2016 } from './2016';
+import { holidaysOfLaw } from './common';
 
 type TimeValue = Date | string | number;
+
+const holidayMap = new Map([
+  [2020, { holidays: holidaysOf2020, workdays: workdaysOf2020 }],
+  [2019, { holidays: holidaysOf2019, workdays: workdaysOf2019 }],
+  [2018, { holidays: holidaysOf2018, workdays: workdaysOf2018 }],
+  [2017, { holidays: holidaysOf2017, workdays: workdaysOf2017 }],
+  [2016, { holidays: holidaysOf2016, workdays: workdaysOf2016 }],
+]);
 
 /**
  * 判断是否为法定节假日，包括调休放假
@@ -9,21 +22,27 @@ type TimeValue = Date | string | number;
 export function isHoliday(date: TimeValue): boolean {
   const dateWrapper = dayjs(date);
   const dateFormatted = dateWrapper.format('YYYY-MM-DD');
-  switch (dateWrapper.year()) {
-    case 2020: {
-      // 法定放假
-      if (holidaysOf2020.includes(dateFormatted)) {
-        return true;
-      }
-      // 法定上班
-      if (workdaysOf2020.includes(dateFormatted)) {
-        return false;
-      }
-      break;
+  const year = dateWrapper.year();
+  if (holidayMap.has(year)) {
+    const holidayMapValue = holidayMap.get(year);
+    const { holidays = [], workdays = [] } = { ...holidayMapValue };
+    // 法定放假
+    if (holidays.includes(dateFormatted)) {
+      return true;
     }
-    default: {
-      console.error(`暂不支持判断 ${dateWrapper.year()} 年度的法定节假日`);
-      break;
+    // 法定上班
+    if (workdays.includes(dateFormatted)) {
+      return false;
+    }
+  } else {
+    const monthDay = dateWrapper.format('MM-DD');
+    // 法定公历假期
+    if (holidaysOfLaw.includes(monthDay)) {
+      return true;
+    } else {
+      console.log(
+        `[public-holidays-cn] 暂时无法准确判断 ${year} 年度的法定节假日`
+      );
     }
   }
   // 正常双休日

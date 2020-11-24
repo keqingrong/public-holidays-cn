@@ -1,6 +1,6 @@
 {
   "name": "public-holidays-cn",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "module": "dist/public-holidays-cn.esm.js",
   "main": "dist/index.js",
@@ -8,6 +8,10 @@
   "files": [
     "dist",
     "src"
+  ],
+  "keywords": [
+    "holiday",
+    "workday"
   ],
   "repository": "keqingrong/public-holidays-cn",
   "author": "Qingrong Ke <keqingrong@outlook.com> (https://keqingrong.github.io/)",
