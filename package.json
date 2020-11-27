@@ -1,6 +1,6 @@
 {
   "name": "public-holidays-cn",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "module": "dist/public-holidays-cn.esm.js",
   "main": "dist/index.js",
