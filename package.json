@@ -1,5 +1,6 @@
 {
   "name": "public-holidays-cn",
+  "description": "Check if a day is a China public holiday or a workday",
   "version": "0.3.0",
   "license": "MIT",
   "module": "dist/public-holidays-cn.esm.js",

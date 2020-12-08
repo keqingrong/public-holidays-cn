@@ -15,7 +15,7 @@ npm install public-holidays-cn
 ## 用法
 
 ```js
-import { isHoliday } from 'public-holidays-cn';
+import { isHoliday, isWorkday } from 'public-holidays-cn';
 
 isHoliday('2020-02-01'); // true
 
