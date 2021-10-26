@@ -29,12 +29,8 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "peerDependencies": {
-    "dayjs": "^1.9.6"
-  },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.9.0",
-    "dayjs": "^1.9.6",
     "husky": "^4.3.0",
     "size-limit": "^4.9.0",
     "tsdx": "^0.14.1",

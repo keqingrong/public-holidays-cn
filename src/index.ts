@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { holidaysOf2022, workdaysOf2022 } from './2022';
 import { holidaysOf2021, workdaysOf2021 } from './2021';
 import { holidaysOf2020, workdaysOf2020 } from './2020';
@@ -24,9 +23,14 @@ const holidayMap = new Map([
  * 判断是否为法定节假日，包括调休放假
  */
 export function isHoliday(date: TimeValue): boolean {
-  const dateWrapper = dayjs(date);
-  const dateFormatted = dateWrapper.format('YYYY-MM-DD');
-  const year = dateWrapper.year();
+  const dateWrapper = new Date(date);
+  const year = dateWrapper.getFullYear();
+  const month = (dateWrapper.getMonth() + 1).toString(10).padStart(2, '0');
+  const dayOfMonth = dateWrapper
+    .getDate()
+    .toString(10)
+    .padStart(2, '0');
+  const dateFormatted = `${year}-${month}-${dayOfMonth}`; // 'YYYY-MM-DD'
   if (holidayMap.has(year)) {
     const holidayMapValue = holidayMap.get(year);
     const { holidays = [], workdays = [] } = { ...holidayMapValue };
@@ -39,7 +43,7 @@ export function isHoliday(date: TimeValue): boolean {
       return false;
     }
   } else {
-    const monthDay = dateWrapper.format('MM-DD');
+    const monthDay = `${month}-${dayOfMonth}`; // 'MM-DD'
     // 法定公历假期
     if (holidaysOfLaw.includes(monthDay)) {
       return true;
@@ -50,7 +54,7 @@ export function isHoliday(date: TimeValue): boolean {
     }
   }
   // 正常双休日
-  if ([0, 6].includes(dateWrapper.day())) {
+  if ([0, 6].includes(dateWrapper.getDay())) {
     return true;
   }
   return false;
