@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { holidaysOf2022, workdaysOf2022 } from './2022';
 import { holidaysOf2021, workdaysOf2021 } from './2021';
 import { holidaysOf2020, workdaysOf2020 } from './2020';
 import { holidaysOf2019, workdaysOf2019 } from './2019';
@@ -10,6 +11,7 @@ import { holidaysOfLaw } from './common';
 type TimeValue = Date | string | number;
 
 const holidayMap = new Map([
+  [2021, { holidays: holidaysOf2022, workdays: workdaysOf2022 }],
   [2021, { holidays: holidaysOf2021, workdays: workdaysOf2021 }],
   [2020, { holidays: holidaysOf2020, workdays: workdaysOf2020 }],
   [2019, { holidays: holidaysOf2019, workdays: workdaysOf2019 }],
