@@ -1,5 +1,15 @@
 import { isHoliday, isWorkday } from '../src';
 
+describe('Holidays in 2022', () => {
+  it('2022-09-10 is a holiday', () => {
+    expect(isHoliday('2022-09-10')).toBeTruthy();
+  });
+
+  it('2022-04-02 is a workday', () => {
+    expect(isWorkday('2022-04-02')).toBeTruthy();
+  });
+});
+
 describe('Holidays in 2021', () => {
   it('2021-06-13 is a holiday', () => {
     expect(isHoliday('2021-06-13')).toBeTruthy();

@@ -10,7 +10,7 @@ import { holidaysOfLaw } from './common';
 type TimeValue = Date | string | number;
 
 const holidayMap = new Map([
-  [2021, { holidays: holidaysOf2022, workdays: workdaysOf2022 }],
+  [2022, { holidays: holidaysOf2022, workdays: workdaysOf2022 }],
   [2021, { holidays: holidaysOf2021, workdays: workdaysOf2021 }],
   [2020, { holidays: holidaysOf2020, workdays: workdaysOf2020 }],
   [2019, { holidays: holidaysOf2019, workdays: workdaysOf2019 }],
