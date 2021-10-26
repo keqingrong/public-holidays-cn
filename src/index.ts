@@ -31,9 +31,9 @@ export function isHoliday(date: TimeValue): boolean {
     .toString(10)
     .padStart(2, '0');
   const dateFormatted = `${year}-${month}-${dayOfMonth}`; // 'YYYY-MM-DD'
-  if (holidayMap.has(year)) {
-    const holidayMapValue = holidayMap.get(year);
-    const { holidays = [], workdays = [] } = { ...holidayMapValue };
+  let holidayMapValue: ReturnType<typeof holidayMap.get>;
+  if (holidayMap.has(year) && (holidayMapValue = holidayMap.get(year))) {
+    const { holidays = [], workdays = [] } = holidayMapValue;
     // 法定放假
     if (holidays.includes(dateFormatted)) {
       return true;
