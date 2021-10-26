@@ -19,7 +19,7 @@ import { isHoliday, isWorkday } from 'public-holidays-cn';
 
 isHoliday('2020-02-01'); // true
 
-isHoliday('2020-03-16'); // false
+isWorkday('2020-03-16'); // true
 ```
 
 ## 许可证
